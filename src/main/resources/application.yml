@@ -1,9 +1,11 @@
 spring:
+  application:
+    name: File-Digitization-System
   jpa:
     hibernate:
       ddl-auto: update
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: "${db_url}"
-    username: "${db_username}"
-    password: "${db_password}"
+    url: "${DB_URL}"
+    username: "${DB_USERNAME}"
+    password: "${DB_PASSWORD}"

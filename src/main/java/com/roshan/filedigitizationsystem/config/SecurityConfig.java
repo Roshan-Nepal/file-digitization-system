@@ -29,7 +29,7 @@ public class SecurityConfig {
         return http
                 .csrf(csrfConfigurer -> csrfConfigurer.disable())
                 .authorizeHttpRequests(requests -> requests
-                        .requestMatchers("/ocr/**").permitAll()
+                        .requestMatchers("/ocr/**","/user/**").permitAll()
                         .anyRequest().authenticated()
                 )
 //                .formLogin(Customizer.withDefaults())
