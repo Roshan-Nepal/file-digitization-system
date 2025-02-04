@@ -1,4 +1,4 @@
-package com.roshan.filedigitizationsystem.dto;
+package com.roshan.filedigitizationsystem.dto.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
