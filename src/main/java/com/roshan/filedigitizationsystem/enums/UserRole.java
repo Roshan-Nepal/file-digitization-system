@@ -1,8 +1,8 @@
 package com.roshan.filedigitizationsystem.enums;
 
 public enum UserRole {
-    USER,
-    ADMIN,
-    MANAGER,
-    MODERATOR
+    ROLE_USER,
+    ROLE_ADMIN,
+    ROLE_MANAGER,
+    ROLE_MODERATOR
 }
