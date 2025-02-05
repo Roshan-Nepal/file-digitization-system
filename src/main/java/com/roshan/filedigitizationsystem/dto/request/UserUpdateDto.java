@@ -1,9 +1,6 @@
 package com.roshan.filedigitizationsystem.dto.request;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Setter
 @Getter
@@ -11,4 +8,5 @@ import lombok.Setter;
 @NoArgsConstructor
 public class UserUpdateDto<T> {
     T t;
+    String operation;
 }
