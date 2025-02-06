@@ -3,10 +3,7 @@ package com.roshan.filedigitizationsystem.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.roshan.filedigitizationsystem.enums.UserRole;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -19,6 +16,7 @@ import java.util.Set;
 @AllArgsConstructor
 @Getter
 @Setter
+@Builder
 public class UserInfo implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -46,6 +44,8 @@ public class UserInfo implements UserDetails {
                 .map(userRole -> new SimpleGrantedAuthority(userRole.name()))
                 .toList();
     }
+
+
 
     @Override
     public String getPassword() {

@@ -8,5 +8,5 @@ import lombok.*;
 @NoArgsConstructor
 public class UserUpdateDto<T> {
     T t;
-    String operation;
+    String action;
 }
