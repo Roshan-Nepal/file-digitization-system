@@ -16,4 +16,9 @@ public class GlobalExceptionHandler {
     public ResponseEntity<?> handleNoSuchUserExistsException(NoSuchUserExistsException e) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
     }
+
+    @ExceptionHandler(InvalidFieldException.class)
+    public ResponseEntity<?> handleInvalidFieldException(InvalidFieldException e) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+    }
 }
