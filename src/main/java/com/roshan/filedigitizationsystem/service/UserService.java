@@ -3,20 +3,24 @@ package com.roshan.filedigitizationsystem.service;
 import com.roshan.filedigitizationsystem.dto.request.UserRequestDto;
 import com.roshan.filedigitizationsystem.dto.request.UserLoginDto;
 import com.roshan.filedigitizationsystem.dto.request.UserUpdateDto;
+import com.roshan.filedigitizationsystem.dto.response.UserResponseDto;
 import com.roshan.filedigitizationsystem.enums.UserRole;
 import org.springframework.http.ResponseEntity;
 
+import java.util.List;
+
 public interface UserService {
-    ResponseEntity<?> login(UserLoginDto userLoginDto);
-    ResponseEntity<?> addUserInfo(UserRequestDto userRequestDto);
+    UserResponseDto login(UserLoginDto userLoginDto);
 
-    ResponseEntity<?> updateUserInfo(Long userId, UserUpdateDto<String> userUpdateDto);
+    void addUserInfo(UserRequestDto userRequestDto);
 
-    ResponseEntity<?> updateUserRole(Long userId, UserUpdateDto<UserRole> userUpdateDto);
+    void updateUserInfo(Long userId, UserUpdateDto<String> userUpdateDto);
 
-    ResponseEntity<?> deleteUser(Long userId);
+    void updateUserRole(Long userId, UserUpdateDto<UserRole> userUpdateDto);
 
-    ResponseEntity<?> getAllUsers();
+    void deleteUser(Long userId);
 
-    ResponseEntity<?> getUser(Long userId);
+    List<UserResponseDto> getAllUsers();
+
+    UserResponseDto getUser(Long userId);
 }
