@@ -5,7 +5,15 @@ spring:
     hibernate:
       ddl-auto: update
   datasource:
+    #Database credentials
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: "${DB_URL}"
     username: "${DB_USERNAME}"
     password: "${DB_PASSWORD}"
+
+#JWT
+jwt:
+  access-expiration: "${ACCESS_T_EXPIRATION}"
+  refresh-expiration: "${REFRESH_T_EXPIRATION}"
+  secret: "${JWT_SECRET}"
+
