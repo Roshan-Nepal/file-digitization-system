@@ -1,9 +1,9 @@
 package com.roshan.filedigitizationsystem.service;
 
-import com.roshan.filedigitizationsystem.exception.TokenValidationException;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
@@ -18,6 +18,7 @@ import java.util.Map;
 import java.util.function.Function;
 
 @Service
+@Slf4j
 public class JwtServiceImp implements JwtService {
 
     @Value("${jwt.secret}")
@@ -62,10 +63,8 @@ public class JwtServiceImp implements JwtService {
 
     public boolean validateToken(String token, UserDetails userDetails) {
         final String username = extractUsername(token);
-        if(username.equals(userDetails.getUsername()) && !isTokenExpired(token)){
-            return true;
-        }
-        throw new TokenValidationException("Invalid or Expired token");
+        log.info("validate token username:{}", username);
+        return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
     }
 
     private boolean isTokenExpired(String token) {

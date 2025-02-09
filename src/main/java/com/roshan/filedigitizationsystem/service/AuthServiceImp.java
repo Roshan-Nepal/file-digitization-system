@@ -5,6 +5,7 @@ import com.roshan.filedigitizationsystem.dto.request.UserRequestDto;
 import com.roshan.filedigitizationsystem.dto.response.TokenResponseDto;
 import com.roshan.filedigitizationsystem.entity.UserInfo;
 import com.roshan.filedigitizationsystem.enums.UserRole;
+import com.roshan.filedigitizationsystem.exception.InvalidTokenException;
 import com.roshan.filedigitizationsystem.exception.UserAlreadyExistsException;
 import com.roshan.filedigitizationsystem.repo.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,5 +61,16 @@ public class AuthServiceImp implements AuthService {
         }
         userRepo.save(userInfo);
 
+    }
+
+    @Override
+    public TokenResponseDto refreshToken(String refreshToken) {
+        UserInfo userInfo = userRepo.findByUsername(jwtServiceImp.extractUsername(refreshToken));
+        if(jwtServiceImp.validateToken(refreshToken, userInfo)){
+            String accessToken = jwtServiceImp.generateRefreshToken(userInfo.getUsername());
+            String refreshToken2 = jwtServiceImp.generateRefreshToken(userInfo.getUsername());
+            return new TokenResponseDto(accessToken, refreshToken2);
+        }
+        throw new InvalidTokenException();
     }
 }
