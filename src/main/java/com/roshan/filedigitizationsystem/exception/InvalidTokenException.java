@@ -1,11 +1,11 @@
 package com.roshan.filedigitizationsystem.exception;
 
-public class TokenValidationException extends RuntimeException {
-    public TokenValidationException() {
-        super("Invalid Token");
+public class InvalidTokenException extends RuntimeException {
+    public InvalidTokenException() {
+        super("Invalid or Expired Token");
     }
 
-    public TokenValidationException(String message) {
+    public InvalidTokenException(String message) {
         super(message);
     }
 }
