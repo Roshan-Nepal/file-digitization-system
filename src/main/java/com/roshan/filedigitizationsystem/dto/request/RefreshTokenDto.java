@@ -1,5 +1,6 @@
 package com.roshan.filedigitizationsystem.dto.request;
 
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -8,5 +9,6 @@ import lombok.Setter;
 @Getter
 @Setter
 public class RefreshTokenDto {
-    private String token;
+    @NotNull(message = "Refresh token cannot be null")
+    private String refreshToken;
 }
