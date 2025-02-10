@@ -8,6 +8,7 @@ import com.roshan.filedigitizationsystem.exception.InvalidFieldException;
 import com.roshan.filedigitizationsystem.exception.NoSuchUserExistsException;
 import com.roshan.filedigitizationsystem.mapper.UserMapper;
 import com.roshan.filedigitizationsystem.repo.UserRepo;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -16,6 +17,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
+@Slf4j
 public class UserServiceImp implements UserService {
 
     @Autowired
@@ -38,8 +40,10 @@ public class UserServiceImp implements UserService {
                 userInfo.setPassword(passwordEncoder.encode(userUpdateDto.getT()));
                 break;
             default:
+                log.error("{} update failed for user {}", userUpdateDto.getAction(), userId);
                 throw new InvalidFieldException("Invalid Field");
         }
+        log.info("{} updated for user {}", userUpdateDto.getAction(), userId);
         userRepo.save(userInfo);
     }
 
@@ -54,8 +58,10 @@ public class UserServiceImp implements UserService {
                 userInfo.getRoles().remove(userUpdateDto.getT());
                 break;
             default:
+                log.error("{} update failed for user {}", userUpdateDto.getAction(), userId);
                 throw new InvalidFieldException("Invalid Field");
         }
+        log.info("{} updated for user {}", userUpdateDto.getAction(), userId);
         userRepo.save(userInfo);
 
     }
@@ -65,8 +71,10 @@ public class UserServiceImp implements UserService {
         UserInfo userInfo = userRepo.findById(userId).orElseThrow(NoSuchUserExistsException::new);
         userRepo.delete(userInfo);
         if (userRepo.findById(userId).isPresent()) {
+            log.error("User {} deletion failed", userId);
             throw new InternalError("User deletion failed");
         }
+        log.info("User with id {} deleted", userId);
     }
 
     @Override

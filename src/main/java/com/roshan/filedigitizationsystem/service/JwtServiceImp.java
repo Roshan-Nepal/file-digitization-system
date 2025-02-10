@@ -63,7 +63,6 @@ public class JwtServiceImp implements JwtService {
 
     public boolean validateToken(String token, UserDetails userDetails) {
         final String username = extractUsername(token);
-        log.info("validate token username:{}", username);
         return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
     }
 
